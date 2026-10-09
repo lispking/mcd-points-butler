@@ -4,7 +4,7 @@
 
 麦管家是一个基于**麦当劳中国官方 MCP Server**（`https://mcp.mcd.cn`）开发的 WorkBuddy 专家（Expert）。它不替你花钱，只帮你管资产——把散落在麦当劳 App 各处的**积分、优惠券、商城订单**当作一个整体来打理，让每一分资产都有去向。
 
-![avatar](expert/mcd-points-butler/avatars/expert.png)
+<img src="expert/mcd-points-butler/avatars/expert.png" alt="avatar" width="160" />
 
 ## 它解决什么问题？
 
