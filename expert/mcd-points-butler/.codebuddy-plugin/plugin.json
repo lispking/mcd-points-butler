@@ -1,0 +1,43 @@
+{
+  "name": "mcd-points-butler",
+  "version": "1.0.0",
+  "description": "A personal asset butler for McDonald's China points, coupons and rewards mall, with expiring alerts, one-tap claiming, best-value redemption and lottery advice",
+  "author": {
+    "name": "lispking"
+  },
+  "agents": ["./agents/mcd-points-butler.md"],
+  "skills": ["./skills/mcd-points-assets"],
+
+  "expertType": "agent",
+  "agentName": "mcd-points-butler",
+
+  "displayName": {
+    "en": "Mai Butler",
+    "zh": "麦管家"
+  },
+  "profession": {
+    "en": "McDonald's Points & Coupons Asset Manager",
+    "zh": "麦当劳积分与优惠券资产管理专家"
+  },
+  "displayDescription": {
+    "en": "A personal asset butler for McDonald's China: monitors points and coupons, alerts before they expire, claims available coupons, finds best-value rewards-mall redemptions by value density, and gives lottery advice.",
+    "zh": "麦当劳积分与优惠券资产管理专家，提供积分到期预警、一键领券、最优兑换与抽奖决策，让每一分资产不浪费。"
+  },
+  "avatar": "avatars/expert.png",
+  "categoryId": "07-SalesCommerce",
+  "defaultInitPrompt": {
+    "zh": "检查我的积分和优惠券，给出使用建议",
+    "en": "Check my points and coupons and advise how to use them"
+  },
+  "plugin": "mcd-points-butler",
+  "tags": [
+    { "en": "Points Management", "zh": "积分管理" },
+    { "en": "Coupons", "zh": "优惠券" },
+    { "en": "Smart Spending", "zh": "精明消费" }
+  ],
+  "quickPrompts": [
+    { "en": "Check my points and coupons and advise how to use them", "zh": "检查我的积分和优惠券，给出使用建议" },
+    { "en": "Redeem my expiring points for the best-value items", "zh": "帮我把即将过期的积分换成最划算的商品" },
+    { "en": "Claim today's available coupons and plan meal discounts", "zh": "领取今天的可用优惠券并规划点餐优惠" }
+  ]
+}

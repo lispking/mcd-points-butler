@@ -1,0 +1,40 @@
+{
+  "mcpServers": {
+    "mcd-mcp": {
+      "type": "streamablehttp",
+      "url": "https://mcp.mcd.cn",
+      "headers": {
+        "Authorization": "Bearer ${MCD_MCP_TOKEN}"
+      },
+      "x-workbuddy": {
+        "displayName": { "zh": "麦当劳 MCP", "en": "McDonald's MCP" },
+        "description": {
+          "zh": "麦当劳中国官方 MCP Server：积分账户、优惠券、积分商城、抽奖、点餐等能力。",
+          "en": "McDonald's China official MCP Server: points account, coupons, rewards mall, lottery, ordering and more."
+        },
+        "auth": {
+          "type": "token",
+          "tokenSchema": {
+            "title": { "zh": "配置麦当劳 MCP Token", "en": "Configure McDonald's MCP Token" },
+            "description": {
+              "zh": "登录 https://open.mcd.cn/mcp 后在控制台点击【激活】申请 MCP Token，粘贴到下方。",
+              "en": "Sign in at https://open.mcd.cn/mcp, activate your MCP Token in the console, then paste it below."
+            },
+            "docUrl": "https://open.mcd.cn/mcp",
+            "docLabel": { "zh": "如何获取 Token?", "en": "How to get a token?" },
+            "fields": [
+              {
+                "key": "MCD_MCP_TOKEN",
+                "label": { "zh": "MCP Token", "en": "MCP Token" },
+                "placeholder": { "zh": "请输入麦当劳 MCP Token", "en": "Enter your McDonald's MCP token" },
+                "type": "password",
+                "required": true,
+                "description": { "zh": "将写入 Authorization: Bearer 头，仅保存在本机", "en": "Stored locally and sent as Authorization: Bearer header" }
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
