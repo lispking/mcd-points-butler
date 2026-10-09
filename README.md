@@ -32,11 +32,14 @@
 
 ### 方式一：WorkBuddy 直接搜索（推荐）
 
-专家已上架 WorkBuddy 开放平台。打开 WorkBuddy，左侧边栏【专家·技能·连接器】→【专家】，在顶部搜索框输入「麦管家」即可找到该专家，点击安装并启用，按引导连接麦当劳 MCP（专家包内置凭证表单，填入 Token 即可）。
+专家已上架 WorkBuddy 开放平台。打开 WorkBuddy，左侧边栏【专家·技能·连接器】→【专家】，在顶部搜索框输入「麦管家」即可找到该专家，点击安装并启用，按引导连接麦当劳 MCP（专家包内置凭证表单，填入 Token 即可）。若搜索不到或安装后提示工具未挂载，改用方式二手动配置连接器。
 
-### 方式二：其他 MCP Client
+### 方式二：手动配置 MCP
 
-任意支持 Streamable HTTP 的 MCP 客户端（Cherry Studio / Cursor / Trae / VSCode 等）可直接使用仓库根目录的 [`mcp-config.json`](mcp-config.json)。
+1. **WorkBuddy**：左侧边栏【专家·技能·连接器】→【连接器】→ 右上角【自定义连接器】→【配置MCP】，粘贴仓库根目录 [`mcp-config.example.json`](mcp-config.example.json) 的内容，将 `${MCD_MCP_TOKEN}` 替换为你的真实 Token，保存并启用。
+2. **其他 MCP 客户端**：Cherry Studio / Cursor / Trae / VSCode 等支持 Streamable HTTP 的客户端可直接导入同一份示例配置；个别客户端要求 `type` 写作 `http`，按客户端文档微调即可。
+
+> 示例配置只含环境变量占位符，请勿将真实 Token 提交到任何仓库。
 
 ## 使用示例
 
@@ -57,8 +60,8 @@
 ```
 你：现在抽奖划算吗？
 麦管家：当前活动消耗 100 积分/次，奖品池共 6 项（未公布概率）。
-最高价值为 108 积分等值的巨无霸券，粗略期望约 35-50 积分/次，
-低于你的积分平均价值密度（约 0.05 元/分 × 100 分 = 5 元）。
+奖品池最高价值约 108 积分等值的巨无霸券，粗算期望约 35-50 积分/次，
+低于 100 积分/次的成本——等于用 100 分的成本换回 35-50 分的东西。
 建议：不抽，把积分留给临期兑换。要我帮你看看商城吗？
 ```
 
@@ -73,16 +76,17 @@
 ```
 mcd-points-butler/
 ├── README.md                  # 本文件
+├── LICENSE                    # MIT 许可证
 ├── CONTEST_DECLARATION.md     # 参赛声明（官方原文，未改动）
 ├── MCP_INTEGRATION.md         # 麦当劳 MCP 集成说明
 ├── workbuddy.md               # WorkBuddy 开发对话上下文（联动奖励核验用）
-├── mcp-config.json            # 通用 MCP 客户端配置模板
+├── mcp-config.example.json    # 脱敏 MCP 配置示例（仅环境变量占位符）
 ├── expert/                    # WorkBuddy 专家包
 │   └── mcd-points-butler/     # 包内以同名文件夹为根
 │       ├── .codebuddy-plugin/plugin.json
 │       ├── agents/mcd-points-butler.md   # 麦管家系统提示词（决策内核）
 │       ├── skills/mcd-points-assets/SKILL.md  # 5 大剧本详细编排
-│       ├── .mcp.json.optional     # 内置 MCP 声明（含 Token 凭证表单）
+│       ├── .mcp.json.optional     # 内置 MCP 声明（含 Token 凭证表单，打包时启用）
 │       ├── avatars/expert.png
 │       └── README.md
 └── scripts/pack.sh            # 专家包打包脚本
@@ -96,6 +100,10 @@ mcd-points-butler/
 - 麦当劳 MCP 有 600 次/分钟的 Token 限流，请合理使用。
 - 请妥善保管你的 MCP Token，不要提交到任何仓库（本仓库配置文件仅使用占位符）。
 
+## 支持项目
+
+如果麦管家帮你少浪费了一点积分或优惠券，欢迎点个 [Star](https://github.com/lispking/mcd-points-butler) 支持一下。本项目正在参加麦当劳程序员节创意开发大赛，公开 Star 数即排行榜依据。
+
 ## License
 
-MIT
+MIT（见 [LICENSE](LICENSE)）

@@ -14,16 +14,11 @@ mcd-points-butler/
 └── README.md
 ```
 
-## 内置 MCP（可选）
+## 内置 MCP（随包默认启用）
 
-包内 `.mcp.json.optional` 声明了麦当劳官方 MCP（`https://mcp.mcd.cn`，Bearer Token 鉴权），并带有 Token 凭证表单（`x-workbuddy.auth.type: "token"`），用户连接时填入 Token 即可，凭证仅存本机。
+包内 `.mcp.json.optional` 声明了麦当劳官方 MCP（`https://mcp.mcd.cn`，Bearer Token 鉴权），并带有 Token 凭证表单（`x-workbuddy.auth.type: "token"`）。`scripts/pack.sh` 打包时会把它复制为 `.mcp.json` 一并发布，用户安装后召唤专家即弹出连接引导卡片，填入 Token 即可，凭证仅存本机。
 
-启用方式（二选一）：
-
-1. **随包发布启用**：将 `.mcp.json.optional` 重命名为 `.mcp.json` 后打包上传。用户召唤专家时会弹出连接引导卡片。
-2. **手动配置**（推荐先验证）：不动包结构，按仓库根 README「方式一」在 WorkBuddy 连接器中手动配置 `mcd-mcp`，效果相同。
-
-> 为什么默认不启用：早期实测 WorkBuddy 会话中声明 MCP 依赖偶发「工具未挂载 / 专家卡在等待连接」，故默认以手动配置为兜底，内置声明作为增强项。若平台行为已修复可直接采用方式 1。
+Token 注入方式为 `Authorization: Bearer ${MCD_MCP_TOKEN}`，依赖平台按凭证表单注入同名变量。若注入失败（表现为 401、工具未挂载或卡在等待连接），按仓库根 README「方式二」在 WorkBuddy 连接器中手动配置 `mcd-mcp` 作为兜底，效果相同；如需发布纯手动配置版，让包内不生成 `.mcp.json` 即可（`.mcp.json.optional` 不要删，它是备用声明）。
 
 ## 打包
 

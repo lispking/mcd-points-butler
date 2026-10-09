@@ -12,7 +12,7 @@
 | 鉴权方式 | `Authorization: Bearer <MCP_TOKEN>`（Token 在 [open.mcd.cn/mcp](https://open.mcd.cn/mcp) 控制台申请） |
 | 限流 | 600 次 / 分钟 / Token，超限返回 429（麦管家内置合并调用与 429 提示逻辑） |
 
-## 使用的 Tools（13 个）
+## 使用的 Tools（18 个：16 个核心 + 2 个辅助引用）
 
 ### 资产盘点
 
@@ -50,6 +50,7 @@
 | `campaign-calendar` | 查询当月营销活动日历 | 攒分节奏建议（如等待翻倍活动） |
 
 > 另外引用 `list-nutrition-foods`（餐品营养）做「热量换积分」等趣味搭配参考，非核心链路。
+> 另引用 `calculate-price`（实付价核验）做点餐联动场景下的「券后实付价」验证，仅提示用户核对，非核心兑换链路。
 
 ## 核心调用流程
 

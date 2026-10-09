@@ -8,7 +8,8 @@ OUT="$ROOT/expert/$NAME.zip"
 
 command -v zip >/dev/null || { echo "需要 zip 命令"; exit 1; }
 
-# 若启用内置 MCP，先将 .mcp.json.optional 复制为 .mcp.json（打包后删除，不污染源目录）
+# 内置 MCP 声明随包启用：将 .mcp.json.optional 复制为 .mcp.json（打包后由 trap 删除，不污染源目录）
+# 如需发布纯手动配置版，让包内不生成 .mcp.json 即可（跳过下面这一步）
 OPT="$ROOT/expert/$NAME/.mcp.json.optional"
 TMP=""
 if [[ -f "$OPT" ]]; then
@@ -17,10 +18,10 @@ if [[ -f "$OPT" ]]; then
 fi
 trap '[[ -n "$TMP" ]] && rm -f "$TMP"' EXIT
 
+rm -f "$OUT"
 ( cd "$ROOT/expert" && zip -rq "$OUT" "$NAME" \
     -x '*.DS_Store' \
-    -x "$NAME/.mcp.json.optional" \
-    -x "$NAME.zip" )
+    -x "$NAME/.mcp.json.optional" )
 
 echo "已生成: $OUT"
 unzip -l "$OUT"

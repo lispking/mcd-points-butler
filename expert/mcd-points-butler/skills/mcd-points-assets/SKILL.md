@@ -13,6 +13,7 @@ author: lispking
 - 每次会话先调 `now-time-info` 建立时间基准，再计算任何"临期/过期"。
 - mcd-mcp 限流 600 次/分钟（429 = 超限）：合并查询、不循环拉取、遇 429 提示稍后再试。
 - 承载资产状态的字段是硬约束：`query-my-account` 的**即将过期积分**、券的失效时间、商品的有效期与使用说明。工具没有的字段不猜，标注"无法确认"。
+- 异常处理：鉴权失败提示用户重填 Token；空结果如实回"暂无"；字段缺失标注"无法确认，以官方实时结果为准"；遇 429 提示稍后再试、不自动重试。
 
 ## Playbook A：资产巡检（每日/首次对话）
 
@@ -26,7 +27,7 @@ author: lispking
 1. `query-my-account` 确认临期积分数量与期限
 2. `mall-points-products` 筛选积分范围内的商品
 3. `mall-product-detail` 逐个核验：在售状态、所需积分、有效期、使用说明
-4. 按**价值密度 = 商品价值 ÷ 所需积分**排序，结合用户历史偏好（`mall-order-list` 的品类）给出 Top 2-3
+4. 按**价值密度 = 商品价值 ÷ 所需积分**排序（「商品价值」取 `mall-product-detail` 返回的原价/面额字段，缺失则不参与排序），结合用户历史偏好（`order-list` 消费订单与 `mall-order-list` 兑换记录的品类）给出 Top 2-3
 5. 确认单（商品 / 扣分 / 兑换后余额 / 券码有效期）→ 用户同意 → `mall-create-order` → 回报券码与有效期
 6. 分不够心仪商品时：报差值 + 攒分建议（可参考 `campaign-calendar` 活动）
 
@@ -45,7 +46,7 @@ author: lispking
 
 ## Playbook E：资产月报
 
-输入：`query-my-account` + `query-my-coupons` + `mall-order-list`（+ `mall-order-detail` 按需）+ `campaign-calendar`
+输入：`query-my-account` + `query-my-coupons` + `order-list` + `mall-order-list`（+ `mall-order-detail` 按需）+ `campaign-calendar`
 
 输出结构固定：
 

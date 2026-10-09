@@ -12,10 +12,10 @@
 secrets/
 
 # 麦当劳 MCP Token 相关：本地填了真实 Token 的文件一律不入库
+# 仓库只保留脱敏示例 mcp-config.example.json，以及专家包内只含占位符的 .mcp.json.optional
+mcp-config.json
 **/mcp-config.local.json
 **/.mcp.json
-# 专家包内的可选 MCP 声明只含 ${MCD_MCP_TOKEN} 占位符，需要提交
-!expert/.mcp.json.optional
 
 # ============================================================
 # macOS 系统文件

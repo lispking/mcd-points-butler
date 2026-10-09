@@ -24,7 +24,7 @@
 
 ### 3. MCP 集成设计
 
-- 完成 13 个麦当劳 MCP 工具的调用编排（详见 [MCP_INTEGRATION.md](MCP_INTEGRATION.md)），覆盖资产盘点、领券与用券、积分商城、抽奖与活动四条链路。
+- 完成 18 个麦当劳 MCP 工具的调用编排（16 个核心链路 + 2 个辅助引用，详见 [MCP_INTEGRATION.md](MCP_INTEGRATION.md)），覆盖资产盘点、领券与用券、积分商城、抽奖与活动四条链路。
 - 设计了 4 条核心编排约束：
   1. **有效期是硬约束**——每次会话以 `now-time-info` 建立时间基准，「即将过期资产」始终置顶；
   2. **消耗类操作双重确认**——`mall-create-order` / `draw-lottery` 前必须输出确认单（商品、扣分、规则）并获用户同意；
@@ -73,7 +73,7 @@
 
 > **[16:49] 助手**：补充详细 `.gitignore`，重点防止真实 MCP Token 入库，符合参赛声明。
 > **[16:50] 助手**：发现 zip 必须以同名文件夹为根，把包内容挪进 `expert/mcd-points-butler/` 再打包；同步 README 目录结构说明后提交。
-> **[16:52] 助手**：骨架完成汇报——项目仓库含专家包、三份参赛文档、打包脚本，提交 `7897279`。（当时汇报为 15 个工具编排，后续文档迭代中收敛为 13 个）
+> **[16:52] 助手**：骨架完成汇报——项目仓库含专家包、三份参赛文档、打包脚本，提交 `7897279`。（当时汇报为 15 个工具编排，后续按官方 mcd-mcp-server 工具表逐条核对，统一为 18 个：16 个核心 + 2 个辅助引用）
 
 **[16:53] 用户**：先写一下 issue，格式：Issue 标题 + 【参赛申请】正文（项目名称 / 项目地址 / 项目简介）
 
@@ -87,7 +87,7 @@
 | 16:40 | `expert/agents/mcd-points-butler.md` | 决策内核系统提示词 |
 | 16:40 | `expert/skills/mcd-points-assets/SKILL.md` | 5 大剧本编排技能 |
 | 16:41 | `expert/.mcp.json.optional` | 内置 MCP 声明（含 Token 凭证表单） |
-| 16:41 | `mcp-config.json` | 通用 MCP 客户端配置模板 |
+| 16:41 | `mcp-config.json` | 脱敏 MCP 配置示例（现名 `mcp-config.example.json`，对齐活动规则命名） |
 | 16:45 | `/tmp/make_mcd_avatar.py` | 头像绘制脚本 → 生成 `avatars/expert.png` |
 | 16:48 | `MCP_INTEGRATION.md` | 工具编排文档（含 mermaid 流程图） |
 | 16:49 | `.gitignore` | 防 Token 入库等忽略规则 |
