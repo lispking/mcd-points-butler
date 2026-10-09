@@ -30,36 +30,11 @@
 1. 一台装有 [WorkBuddy](https://www.workbuddy.cn/) 的设备
 2. 麦当劳中国 MCP Token：登录 [open.mcd.cn/mcp](https://open.mcd.cn/mcp) → 右上角「控制台」→ 点击「激活」申请
 
-### 方式一：WorkBuddy 自定义连接器（推荐）
+### 方式一：WorkBuddy 直接搜索（推荐）
 
-1. 打开 WorkBuddy，左侧边栏【专家·技能·连接器】→【连接器】
-2. 右上角【自定义连接器】→【配置 MCP】，粘贴以下 JSON（**替换 Token**）：
+专家已上架 WorkBuddy 开放平台。打开 WorkBuddy，左侧边栏【专家·技能·连接器】→【专家】，在顶部搜索框输入「麦管家」即可找到该专家，点击安装并启用，按引导连接麦当劳 MCP（专家包内置凭证表单，填入 Token 即可）。
 
-```json
-{
-  "mcpServers": {
-    "mcd-mcp": {
-      "type": "streamablehttp",
-      "url": "https://mcp.mcd.cn",
-      "headers": {
-        "Authorization": "Bearer YOUR_MCP_TOKEN"
-      }
-    }
-  }
-}
-```
-
-3. 保存后将 `mcd-mcp` 启用
-
-### 方式二：安装专家包
-
-```bash
-cd scripts && ./pack.sh   # 生成 expert/mcd-points-butler.zip
-```
-
-在 WorkBuddy【专家·技能·连接器】→【专家】→【我的专家】中导入 zip，按引导连接麦当劳 MCP（专家包内置凭证表单，填入 Token 即可）。
-
-### 方式三：其他 MCP Client
+### 方式二：其他 MCP Client
 
 任意支持 Streamable HTTP 的 MCP 客户端（Cherry Studio / Cursor / Trae / VSCode 等）可直接使用仓库根目录的 [`mcp-config.json`](mcp-config.json)。
 
