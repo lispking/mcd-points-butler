@@ -4,7 +4,7 @@
 
 麦管家是一个基于**麦当劳中国官方 MCP Server**（`https://mcp.mcd.cn`）开发的 WorkBuddy 专家（Expert）。它不替你花钱，只帮你管资产——把散落在麦当劳 App 各处的**积分、优惠券、商城订单**当作一个整体来打理，让每一分资产都有去向。
 
-![avatar](expert/avatars/expert.png)
+![avatar](expert/mcd-points-butler/avatars/expert.png)
 
 ## 它解决什么问题？
 
@@ -54,7 +54,8 @@
 ### 方式二：安装专家包
 
 ```bash
-cd scripts && ./pack.sh   # 生成 expert/mcd-points-butler.zip```
+cd scripts && ./pack.sh   # 生成 expert/mcd-points-butler.zip
+```
 
 在 WorkBuddy【专家·技能·连接器】→【专家】→【我的专家】中导入 zip，按引导连接麦当劳 MCP（专家包内置凭证表单，填入 Token 即可）。
 
